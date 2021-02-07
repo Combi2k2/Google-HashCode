@@ -3,7 +3,6 @@
  * Then update traversed edge until the time runs out
  */
 #include <bits/stdc++.h>
-#include "CrucialData.hpp"
 
 using namespace std;
 
@@ -34,27 +33,28 @@ typedef pair<int,int>   ii;
 
 bool visit[N * 5];
 
-ii  explore(int depth,int u,int cost) {
+ii  explore(int depth,int u,int tmp_cost)   {
     if (depth == 0) return  ii(u,0);
 
     int best_val = -1;
-    int best_dir = -1;
+    int best_pos = -1;
 
-    for(int i : adj_list[u])    {
+    for(int v : adj_list[u])    {
+        int i = index[ii(u,v)];
         int current_score = 0;
 
         bool visited = visit[i];
-        if (!visited)   current_score = E[i].point;
+        if (!visited)   current_score = point[i];
 
-        cost += E[i].cost;  visit[i] = true;    current_score += explore(depth - 1,E[i].v,cost).second;
-        cost -= E[i].cost;  visit[i] = visited;
+        visit[i] = true;    current_score += explore(depth - 1,v,tmp_cost + cost[i]).second;
+        visit[i] = visited;
 
         if (best_val < current_score)   {
             best_val = current_score;
-            best_dir = i;
+            best_pos = v;
         }
     }
-    return  ii(best_dir,best_val);
+    return  ii(best_pos,best_val);
 }
 void Main_of_Greedy(vector<int> *path)  {
     int pos[8];
@@ -73,18 +73,19 @@ void Main_of_Greedy(vector<int> *path)  {
         if (next_step.second == 0)
             break;
         
-        int dir = next_step.first;
+        int Pos = next_step.first;
+        int dir = index[ii(pos[car],Pos)];
         //if(!dir)    {
         //    cerr << "Bug vl :)))\n";
         //    break;
         //}
         //cerr << "move from " << car << " to " << dir << "\n";
 
-        path[car].pb(E[dir].v);
-        leng[car] += E[dir].cost;
+        path[car].pb(Pos);
+        leng[car] += cost[dir];
 
-        pos[car] = E[dir].v;
-        answer += (visit[dir] ? 0 : E[dir].point);
+        pos[car] = Pos;
+        answer += (visit[dir] ? 0 : point[dir]);
         visit[dir] = true;
     }
 }
