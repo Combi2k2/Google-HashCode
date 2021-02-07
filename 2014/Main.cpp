@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include "CrucialData.hpp"
 #include "greedy.hpp"
 
 using namespace std;
@@ -38,11 +39,14 @@ int main()  {
 
         int dir;    cin >> dir;
 
-        int time;   cin >> time;
-        int length; cin >> length;
+        cin >> cost[i];
+        cin >> point[i];
 
-        if (dir == 1)   addEdge(u,v,time,length);
-        if (dir == 2)   addEdge(u,v,time,length), addEdge(v,u,time,length);
+        if (dir == 1)   adj_list[u].pb(v),  index[ii(u,v)] = i;
+        if (dir == 2)   {
+            adj_list[u].pb(v);  index[ii(u,v)] = i;
+            adj_list[v].pb(u);  index[ii(v,u)] = i;
+        }
     }
     /*******************
      * THE ABOVE PART IS TO READ INPUT
