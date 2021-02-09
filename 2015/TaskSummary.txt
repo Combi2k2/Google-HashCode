@@ -1,0 +1,35 @@
+Cho bảng R x C, với điều kiện là các ô (x,0) thì kể với ô (x,C - 1) trong đó 0 <= x < R
+Coi bảng đó là mặt đất, ngta muốn thả các quả bóng lên không trung.
+
+-   Một khi đã thả quả bóng, chỉ có chủ động thể thay đổi độ cao chứ không thể thay đổi tọa độ của quả bóng.
+-   Tọa độ của quả bóng chỉ có thể thay đổi nhờ sức gió ở độ cao hiện tại của nó.
+-   Độ cao tối đa của quả bóng là A
+-   Một khi đã thả quả bóng, nó không thể quay trở lại mặt đất rồi được thả trở lại.
+
+Gió ở một "tầng độ cao" có dạng vector [a,b], tức là nếu quả bóng ở "tầng độ cao" này có tọa độ [x,y] thì
+sau đó nó sẽ có tọa độ:
+-   newX =  x + a  (0 <= newX < R)
+-   newY = (y + b) mod C
+
+Note: nếu newX < 0 hoặc newX >= R thì quả bóng sẽ biến mất vĩnh viễn và không thể trở lại bảng
+
+Bây giờ, việc của chúng ta là điều chỉnh độ cao của các quả bóng trong T lần, mỗi lần có thể thay đổi độ cao
+của mỗi quả bóng bằng cách:
+
+-   giảm độ cao đi 1;
+-   tăng độ cao lên 1;
+-   giữ nguyên độ cao.
+
+Với điều kiện quả bóng vẫn ở trên không trung và độ cao không vượt quá A
+
+Đề chính:
+
+Coi mỗi quả bóng là 1 LTE transmitter.
+Một quả bóng có tọa độ (x0,y0) cung cấp Internet cho các hộ dân có tọa độ tại điểm (x1,y1) nểu:
+
+(x0 - x1)^2 + min(|y0 - y1|,C - |y0 - y1|)^2 <= V^2 (V là hằng số cho trước)
+
+Có một số điểm nhất định trên mặt đất mới được coi là hộ dân.
+Trong một lượt, một hộ dân được cung cấp Internet từ ít nhất 1 bóng sẽ giúp ta đc 1 điểm.
+
+Trong mỗi lượt, tìm phương pháp điều chỉnh độ cao tối ưu nhất sao cho điểm cuối cùng cao nhất có thể.
