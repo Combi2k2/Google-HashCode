@@ -1,0 +1,9 @@
+Idea chính:
+-   Tối ưu điểm của mỗi Balloon khi đã tính được quá trình bay của những quả bóng trước đó:
+
++   Xét quá trình của quả bóng thứ 1 sao cho nó tối ưu số điểm.
++   Xét quá trình của quả bóng thứ 2 sao cho nó tối ưu số điểm với những hộ dân quan trọng không được covered bởi quả bóng thứ nhất
+...
+
+Mỗi bước trên có thể được thực hiện bằng QUY HOẠCH ĐỘNG.
+Sau đó truy vết để tìm ra quá trình bay của quả bóng hiện tại. Cập nhật lại những hộ dân nào được covered bởi quả bóng đó.
