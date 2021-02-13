@@ -16,7 +16,7 @@ typedef pair<int,int>   Poi;
 
 int Row;
 int Col;
-int Attitude;
+int Altitude;
 
 vector<Poi> Imp_Cells;
 vector<Poi> Wind_dir[8];
@@ -30,7 +30,7 @@ int Number_of_Balloons;
 void readInput()    {
     cin >> Row;
     cin >> Col;
-    cin >> Attitude;
+    cin >> Altitude;
 
     int L;  cin >> L;
     cin >> Coverage_Radius;
@@ -46,7 +46,7 @@ void readInput()    {
 
         Imp_Cells.pb(x,y);
     }
-    for(int i = 1 ; i <= Attitude ; ++i)
+    for(int i = 1 ; i <= Altitude ; ++i)
         for(int j = 0 ; j < Row ; ++j)
         for(int k = 0 ; k < Col ; ++k)  {
             int a;  cin >> a;
