@@ -1,0 +1,11 @@
+Do bài này là bài NP-hard (có thể suy ra vì nó là dạng advanced của Partition Problem)
+Thuật toán chỉ mang tính approximate (Greedy only):
+
+Xét các server theo thứ tự giảm dần của capacity:
+
+Tìm Pool có Guaranteed Capacity bé nhất và bổ sung server hiện tại vào pool đó sao cho tối ưu nhất:
+-   Ta duyệt các hàng với thứ tự tăng dần của tổng dung lượng các server trong pool mà thuộc hàng đó
+-   Nếu hàng hiện tại có thể đặt server vào:
+    +   server có size k
+    +   ít nhất k slot liên tiếp available
+-   Đặt server đó vào hàng này và update các dữ liệu cần thiết

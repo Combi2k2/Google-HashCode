@@ -1,0 +1,18 @@
+Data Center là tổ hợp của R hàng với S slots trong mỗi hàng
+
+Các server sẽ được đặt vào các hàng và chiếm 1 số slot thỏa mãn:
+-   Server được đặt hoàn toàn trong hàng
+-   Server không được đặt đè lên 1 số slot bị cấm
+-   Server không được đặt lên slot bị chiếm bởi một server khác
+
+Mỗi server có 2 tham số là kích thước và dung lượng:
+-   Kích thước là số slots mà server sẽ chiếm trong hàng
+-   Dung lượng là lượng thông tin sẽ được truyền đi bởi server này
+
+Một Pool là tổ hợp của các Server. Độ truyền tin tối thiểu (Guaranteed Capacity) của Pool là tổng dung lượng bé nhất
+của các Server trong Pool đó khi mà có đúng 1 hàng không được truyền điện tới (Mọi Server trong hàng đó đều unavailable).
+
+Độ truyền tin tối thiểu có thể được tính bằng công thức sau:
+SUM_server k in Pool i_(Capacity k) - MAX(SUM_server k in Pool i and row r_(Capacity k))
+
+Chúng ta cần dựng P Pool sao cho tổng độ truyền tin tối thiểu của P Pool này là lớn nhất có thể.
