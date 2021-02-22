@@ -1,0 +1,64 @@
+Cho 1 bảng R x C (bảng không có tính tuần hoàn, tức là ô [r - 1,x] không kề với ô [0,x])
+
+Có 1 số loại mặt hàng sẽ được mua bán trong bài toán này.
+    Mỗi loại mặt hàng có một số lượng hàng nhất định
+
+Các mặt hàng được trữ trong các nhà chứa. Mỗi nhà chứa được đặt tại 1 ô trong bảng (không có 2 nhà chứa ở cùng 1 ô)
+Trong suốt quá trình mua bán thì các nhà chứa không được bổ sung thêm mặt hàng từ nguồn bên ngoài.
+
+Một đơn hàng được đặt ra bởi 1 khách bao gồm các loại mặt hàng và số lượng của các loại mặt hàng đó.
+Đảm bảo tổng số lượng trong yêu cầu của tất cả các khách không vượt quá số lượng hàng ban đầu của loại hàng đó.
+
+Một đơn hàng được coi là đã hoàn thành khi mà khách hàng đó nhận được đủ lượng hàng mà người đó yêu cầu đối với mỗi
+    loại mặt hàng.
+
+Note:   -   Không cần hoàn thành tất cả các đơn hàng.
+
+Một con drone là thiết bị được dùng để vận chuyển hàng.
+        Drone bay từ ô [x1,y1] đến ô [x2,y2] trong bảng sẽ đi đường thẳng ngắn nhất
+        (Đường có độ dài sqrt((x1 - x2)^2 + (y1 - y2)^2))
+
+Đặt khoảng cách này là số thực L.
+Số đơn vị thời gian mà drone bay đoạn đường này là số nguyên bé nhất lớn hơn hoặc bằng L.
+
+Đối với mỗi con Drone có các lệnh sau đây:
+
+- Load    : Drone lấy 1 lượng hàng hóa của 1 loại hàng từ 1 nhà chứa.   (Parameter là index của drone, nhà chứa, mặt hàng và số lượng)
+- Deliver : Vận chuyển 1 lượng hàng hóa của 1 loại hàng cho 1 khách.    (Parameter là index của drone, khách   , mặt hàng và số lượng)
+- Unload  : Chuyển 1 lượng hàng hóa của 1 loại hàng đến 1 nhà chứa khác.(Parameter là index của drone, nhà chứa, mặt hàng và số lượng)
+- Wait    : Ở yên vị trí hiện tại trong bao nhiêu đơn vị thời gian.     (Parameter là index của drone, số đơn vị thời gian)
+
+Trừ lệnh Wait, mỗi lệnh sẽ cần thêm 1 đơn vị thời gian để thực hiện ngoài thời gian bay đến vị trí cần thiết của drone.
+
+Ta mô phỏng bài toán trong T đơn vị thời gian (từ 0 tới T - 1).
+Ban đầu, mọi drone đều ở vị trí của nhà chứa có index 0.
+
+Note:   -   Drone có capacity hữu hạn. (Tổng khối lượng mặt hàng mà drone này mang không bao giờ vượt quá capacity này).
+        -   Nếu nhiều drone thực hiện lệnh tại cùng nhà chứa trong 1 đơn vị thời gian thì mọi lệnh Unload sẽ được thực hiện trước.
+        -   Trong cùng  đơn vị thời gian, các drone khác nhau có thể đang thực hiện các lệnh khác nhau.
+
+INPUT:
+
+-   Số hàng và cột trong bảng R, C (<= 10000).
+-   Số drone D (<= 1000)
+-   Thời gian mà bài toán được mô phỏng T (T <= 1000000)
+-   Capacity của 1 drone.
+
+-   Số mặt hàng P (P <= 10000).
+-   P số tiếp theo là khối lượng của mỗi mặt hàng (<= capacity của mỗi drone)
+
+-   Số nhà chứa W (W <= 10000).
+-   Mỗi nhà chứa được mô tả bằng 2 dòng:
+    +   Dòng thứ nhất là tọa độ của nhà chứa trong bảng.
+    +   Dòng thứ hai gồm P số là số lượng của mỗi loại mặt hàng được trữ trong nhà chứa đó.
+
+-   Số đơn hàng C (C <= 10000).
+-   Mỗi đơn hàng được mô tả bằng 2 dòng:
+    +   Dòng thứ nhất gồm tọa độ của người nhận đơn hàng này.
+    +   Dòng thứ hai gồm số lượng items mà đơn yêu cầu.
+    +   Dòng thứ ba gồm các loại hàng của các items mà đơn này yêu cầu. (2 loại hàng giông nhau có thể cùng xuất hiện).
+
+Tính điểm:
+
+Giả sử có 1 đơn hàng được hoàn thành trong t đơn vị thời gian. Điểm nhận được sẽ là (T - t) / T * 100, round up.
+Max số điểm (hiển nhiên).
